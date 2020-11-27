@@ -61,6 +61,7 @@ const createEmployeePayroll = () => {
         throw e;
     }
 
+    employeePayrollData.id = createNewEmployeeId();
     employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
     employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
     employeePayrollData.department = getSelectedValues('[name=department]');
@@ -123,5 +124,12 @@ const setValue = (id, value) => {
     element.value = value;
 }
 
+// Creating id for each employee
+const createNewEmployeeId = () => {
+    let empID = localStorage.getItem("EmployeeID");
+    empID = !empID ? 1 : (parseInt(empID)+1).toString();
+    localStorage.setItem("EmployeeID",empID);
+    return empID;
+}
 
 
